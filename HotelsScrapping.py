@@ -189,14 +189,9 @@ def insert_into_hotel_collection():
 def extract_geo_location():
     hotels_col = get_collection()
     base_url = "http://api.positionstack.com/v1/forward?access_key={}&query=".format("<accesskey>")
-    j=0
     hotels = hotels_col.find()
     for hotel_dict in hotels:
         try:
-            j=j+1
-            print(j)
-            if(j<100):
-                continue
             address = hotel_dict['Address']
             url_gen = base_url + quote(address)
             for i in range(10):
